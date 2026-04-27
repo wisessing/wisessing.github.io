@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>pisut.net</title>
+  <meta name="robots" content="noai, noimageai">
   <style>
     html, body { height: 100%; margin: 0; }
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      color: #222;
-      background: #fafafa;
+      color: #222; background: #fafafa;
     }
     p { font-size: 1.1rem; margin: 0; }
-    .pisut { vertical-align: middle; height: 1em; width: auto; }
+    .user {
+      height: 1.1em; width: auto; vertical-align: middle;
+      user-select: none; -webkit-user-select: none;
+      -webkit-user-drag: none; pointer-events: none;
+    }
     a { color: inherit; }
   </style>
 </head>
 <body>
-  <p>
-    A sandbox website by<!--
-    --> <svg class="pisut" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 16" role="img" aria-label="pisut@"><text x="0" y="13" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">pisut@</text></svg><a href="https://www.cmkl.ac.th">cmkl.ac.th</a>
-  </p>
+  <p>A sandbox website by <img class="user" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANAAAABGCAYAAAC9mxoqAAAPE0lEQVR42u2daZRUxRXHfyAjyCbiFkQjubiBLC4oSNTEPSqKopioHESNqImKMYsSJVETPWI8ZjNuuCvHhRhRIqIhKrhF4oIE4xK9ghsGVIiMMEiYyYe6c2iqq7tf93s99MT6n9MfXr1+r+pV1b/q1q17b0FERERERERERERERMSXB21ac+FFpAfwO+AAYClwMzBRVdfEpo1oCbRrxeTZEPgLsLMlbQJcBnQBxsembd0QkbbAAGBvoD/QG/ga0BXoBGwINACfA4uBd4G3gReAOar6epyBilfw0cCfArdWA51V9YvYDVslafYHjgeOtkGxUiwEHgTuUtW/V6vMbVtxffcukF4HfDV2x1ZFnDoROQV4zaSKU1KSB2Bb4BxgjojMEZFjowi3Lt4pkP6FTecRrYM8BwF/ALYv8rfVwALgLeAToB5YA3QEOgPbGGF6FHh+D2CKiPwdOEdV/xZFOJH2wMtAH+/W5ap6YeyaNd9+nYBrgdEF/rIAuBuYCTyrqg0J3rklsCdwKHAEsHXgb43AVcCELMT81q6F6wn8FqeFWwVMAi6OWriK1h5DgeHAIao6oMr57Qjcz1oFUC5mA78EZqpqU8pvOhz4AbBf4C/PAiNU9d9fWgJFpO7ImwBXA8OAzSx5lap2qGKeuwOPApsGFv3fU9XpVcjzMBtot/NuvQccoKr/+jIqESLSY0tgTA55qk3YvYDHA+SZDPSrBnkA7L27Ard7t7YBnhCR7SKBImp9ttsBmIbbx2lGE/BjVR2lqvXVzF9V61V1DDDBu9UTmGGzcSRQRM2KitO9macJOFNVr2rJsqjqL4ELvOTewN0i0iYSKKIWcSP5+3Y/UtUb1kdhVHUi4Od9CHBGJFBErc0+JwH+JubNqnr1ei7aucA8L+0KEflKOS9pF5s4oork6Qr8ykt+DTirzPcMBUYAX8dp0jbGbZi/CTwMXNOsjhaRC3Fq8GacrarXBGahBhE5FZjDWm10V+B8nOp7/RDINrNGAAcC/XCans44w79FVoFPAvep6vs12OiDcBtxg4C+QHdrsFXAcpyVw5u4fYSZqvpmpEpBXARsnnPdCIxOsilqbbE38GtrCx91OM3arsA4ERmrqveQr1FcUkSUe0FE7mTdzdyxInKZqn6cpIxtEn7IXGCgl3y0qk7N+c8WwC9watENE7y2EbgXGK+qCyvs7CXLlfA9GwDfBc4DdiizGC+q6qAS778Y+LmXfIOqnpGC6N1wLhw+NlHVZYH/3wN8OyNibFSKBCLSHbfP0jEn+RZVPTXh911iBEy6zGiygfsYYFRO+v6q+kSRfPoC8z0unKOqv2+xNZCIHGKFGJuQPM15Hw/ME5Fj1uOM0weYC1xfAXkAdo8TTRCne+T5AvhZwja5wf7r988GE7mmAFOB173J4Pcm8SSagWwW+qdJRLk4scWUCCJyAvBnb6ouB12B+0Tk5PVAnn1MFOsX+3vmGOtd36uqHyRokwsDz67EqZ57qupgVT1OVY9W1T7ALkYqcLZvB3rPLk5Q1ine9Z5J94XapeyA+wG3ee9pwAwAgX8DK4Cv2HpiOLBFASLfKCJvq+rsFiJPT5w/UbfA7U+Ah4AXbQTbwNZBW+GcvAbbN0UUXkf28pKvTfDcQOBiL/l94AhVnVtgBnnF+uFz1jZtPLHukwRFnh5Y2uyN2/itGoG6A9fZYq6ZOFfhXKrrC1TQmThfj4nk+3u0A24SkQFJF5kpcXNgwdloDXilqq4q0tBtgL2Ak+zXGnAdMMNL6wFc7qX9FzitxLtWl7g/wrt+r5QLga1DbwoMxsMLkSeHRCtE5DwbuHPxaRLDYlVdKCKLWNcdYrdqE+jyHHlzEXCwqs4vUdA1wCQReczkTn+U2t4WjhdVeYQcgNs483G2ql6boMKbbIZ91ha7NQ9VnQXM8uphpwCB1qjqbSmz+6Z3/WCCZ44PaNt+oqovJczzceAjTzJYXEaZ53kE6l3tNVAzeT4G9ilFHp/xOBPzZYHbZ4lIxyr3p8MDaW8kIU/gWz6MQts6pNzQRu9cPJXg0TO967dMsZO0HZpM5E6sQPDga4J7tYgSAThNVd+uoOMtwG1a+dgYOK7K7dwnkPZ07P6ZYGegvZc2pwTp+uH8kXIxUVVXl5n3RxUoEAo926UlCPRQuXsuHibZSONjdJUbeaNAWvSNymgS8q5X2mBZDEd6118Af6wg75UpZqAV3nWnliBQKktam3ZvCdwabIvKaiG0ATko9v1M0KuEaBTCEO/6idBmcAJ0TkGgNQFlSlUJ9K6qPpVBhYdmsI6E3X2zwhuBtAEWKisiHXzN5ocVEOjFCvNOQ6AuCQbZTAk0O8POHFJ771bFRp5RIP0uERkROZAKnUqIRv76Z2PyN+HnVpj3phkSaFm1CfRKFrWtqo3Aq4FbW1SrhVX1VZwVb2jmu19EporIbpELFaFjiXWJj9COf6WazR1TKBG2ruTZNAT6JMNKX5qwYrPE93Eq+BCGAy+KyDMiMspCaEUkQ6N3XVcBgT4rW3Mh0gVnKZKLj8t4hb9keLnaBFqWYaWH3tWtmq1se1GH4syNCmEocCfwvohcISLbRn6UxIoSMxIJ7q+oIN8hgbQlCcm3EfmBHZ+vNoGaMqz0NgnTsibRCzjt28MJFsbnA2+JyG0iIpEnBVFfYl3iY3kCZUASHJFCSjrYmylXJV2H1YpLd9cqz3DFSPS+qg4DDgNKhXxth7N9+6eIXCoi0aM3H76TZKlZOyS+b1Wm+LaBid2Vwte+PlDMFrK1EGhpSxZAVR9R1b2AfXGbeMX2AdrjwiPNNC1SxFos8GfvEnX0QWDWKndP7juEDxTomoB8W5HvaHhj0oxrhUBfXV8zUIBIT6nqSBs5L7YGLoRvAFNFpK6CrNKKqLVqORE6l2ePIvXdCPjHjyR2sDTbu5/apa+9SyJqjwc6eOV/siUIlInBp7kmbxO4tV5jDajqh6p6CW5nfTSFT4P4JnB2ideFZrNOKYvYrRbZY2Y7vmJmrxKPPeJdDxSRQxNmeSXO12wBLt52LoaW6Hv7A9/zks8uJyZ3GgJtnlGd7xJIa8SdNFYLHeK/qnonTs15a4G/XVDC9Gh5JeJFCWxK7eI57/rIEv+/1RbuubjBnB6LEeCHwDi7nBSQFk4uFCzRDFgnexyYrKozy/nQNAQamFFlHxUSA1R1eY2NrCtV9RTckRuhwWRIkcdD+xq9UhZp1xomkO+ItruI9CpStx8DfuipbYCnLd6G3/n7i8i9rLXFXII7K/f5QB+9zHu2TkTGAM+wru/QO7hYcWUhjRbpYBFpk/IIig0IR4qZVcOd40fAyEDdbW+NEkJInbqTiNRVYLLfjH1ruI4exEX+bJezXjuD/JC6uZiA89PayRtkZojIQpy1Sltb1/jBX05X1XoReQoXCSh3STBeRI7CuVRshjMR8w/iWgwcnjSUVVYzUE/yXXfLxQmEYwvcUqs9wxzoNHCre5HH/hFIqyPfczPpwNM9g7pvFpV9tLezddLUUXNMiVycZoEWC87wwLcK1O22uG2GbwXIM0FVH7B3rCF8wHQf3PbD4QHyvAnsq6qvVfKtabVwl4pIhwo7QSfgisCtl22Ds5YROtlsRZHO8Q5htfyJFeZ/XkZKnPoqrm9/HRhgxpcg3kJcMI8HErz/P8BJFiw+9x2TLZ9SktFqXBisQar6RqUfmZZAfa0Q5ZKnLS6oR2jD7DfV7v0islmKZzsR9pcv1Qghj9cTbTFbTv6DCXvyVoJl1VrfqurTAVH8XAtkWOy5Rao6woh0jYluS63DLwb+amJ0L1W9o8A7rsBF6Lkep5aux2lCl1iZLgJEVc9Ju9bOYif9uyLSAIwznX6pDtDOKia09nkSZ3tWbdxtUU0vqeBcmnPJ92j9DBdkpBhuJ9/cpB0wWUT2U9VPE9TdbrgYfJlYQFg0m4XkWwscDzyWQRbn4nx7mgfqDjiXkSGlzidV1WeKrCmTfNt88uMsZI40M1CuD/lZwCw7vq9YB9jTFnOnB26vxMVXaGoBAtXZKLZARK5MYtsmIh1EZAJwaeD2HxKYfkwj3+8eGyln2+ltBQcdC9s0i7UOaw9lVBch86XRIjI8A4LODWjXdq3lNW65SBMb+2TrTP4m6Mu4jbGFJiJsbiPcMMLBPJoxRlVvL1OcCZWrZGxsEXkSZ0WQi7dw0WNex5nB/8dGzB6Wx6GE915eAYYkPEX6OFw88BCabHCZgQtgX4/ziRpAfkDKRcA+hONJbFKOO7SIDCMc/6wJZ2T7KG5jtKtpxYYDeyS1FTNXkDn2Hbm4WlV/2NoJlEYUWGYiyWzW3RRsjphfjiZoXLnkqQK2I/8Q2lJ4BzgmaSBIVb3PRvYTCgxmg+1XDCtxxo9Z+WM9YoPAwEB5htmvooHXvnmViBxrIm7u2vM8EemMO1i41Z6qnlZd+QouvtuiCl+xBDgqdH5LK8BMYHAFIb1GA3dUmOenuACWz2f1EdZ5R1GBE1sZefwLp0L+3Ls1FnfIb88vJYGscl4C+uNiZCcdST7Hadv6quq09fDd51Pa4roQ5gBHqupBqrqkwg47xoiU9FiXJlwA9H6m3cq6g883rdcbVSTRHNw+ji9e7gPMF5Fx1XIPEZG2IjLCzq6qmTVQ3lpDRL5mGpz9cSruTS2P5dZZ5uHUkFNrwVTHDFkPwu3q98Wpp7vhDD1X2zroI9zRLS8BD6qqZph/e5wz1yE4g8stc+rsU9xhZLOBe9LsVZRRnmbLkCOAPW392tEGvHdxVtNTVPWRFHn0s7VVyAJfbWC9LYv+YWdWHYs7cW47oI+qvl6zBIqIKGPgmkT+2anNaMCp0R/GGaa+mnCLpKcNhINt7baHJ2VlTqDoURnR4jAt4UgRGYlzR+jl/aUDzoK72Yq7QUTetVlwOc7qoy0uFFUXnBKrN+kt3COBIloVkaaIyDRTJoyjsANcB5wN3A4psnvexOJIoIj/KxI1AL8TkWtMyTDSZp7uKV+9Bqeefwy4PWvRLRIootaI1Ig7KW66KTP643ysdrGZaVsjVUebkVabKLeCtaenK25vbh7wrKp+Vu1yRwJF1CKZ1uDCSs2t9bK2jc0VEREJFBERCRQREQkUEREJFBEREQkUEREJFBERCRQREREREREREREREREREdHK8T+bPt58s0ABigAAAABJRU5ErkJggg=="><a href="https://www.cmkl.ac.th">cmkl.ac.th</a></p>
 </body>
 </html>
