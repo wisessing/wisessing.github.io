@@ -133,6 +133,37 @@
     });
   }
 
+  function todayDayKey() {
+    var d = new Date();
+    var m = d.getMonth() + 1, day = d.getDate();
+    var map = {
+      '426': '26apr', '427': '27apr', '428': '28apr', '429': '29apr',
+      '430': '30apr', '501': '1may', '502': '2may', '503': '3may'
+    };
+    return map[String(m * 100 + day)] || null;
+  }
+
+  function applyDayFilter(container, blocks, day) {
+    Array.prototype.forEach.call(container.querySelectorAll('.day-btn'), function (b) {
+      var bDay = b.getAttribute('data-day');
+      b.classList.toggle('active', bDay === day || (bDay === 'today' && day === todayDayKey()));
+    });
+    Array.prototype.forEach.call(blocks, function (block) {
+      if (day === 'all' || block.getAttribute('data-day') === day) {
+        block.classList.remove('hidden');
+      } else {
+        block.classList.add('hidden');
+      }
+    });
+    if (day !== 'all') {
+      var first = document.querySelector('.day-block:not(.hidden)');
+      if (first) {
+        var top = first.getBoundingClientRect().top + window.pageYOffset - 110;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    }
+  }
+
   function setupDayFilters() {
     var container = document.querySelector('.day-filters');
     if (!container) return;
@@ -143,25 +174,19 @@
       var btn = e.target.closest('.day-btn');
       if (!btn) return;
       var day = btn.getAttribute('data-day');
-      Array.prototype.forEach.call(container.querySelectorAll('.day-btn'), function (b) {
-        b.classList.toggle('active', b === btn);
-      });
-      Array.prototype.forEach.call(blocks, function (block) {
-        if (day === 'all' || block.getAttribute('data-day') === day) {
-          block.classList.remove('hidden');
-        } else {
-          block.classList.add('hidden');
-        }
-      });
-      // Smooth scroll to first visible block on small screens, except for "all"
-      if (day !== 'all') {
-        var first = document.querySelector('.day-block:not(.hidden)');
-        if (first) {
-          var top = first.getBoundingClientRect().top + window.pageYOffset - 110;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      }
+      if (day === 'today') day = todayDayKey() || 'all';
+      applyDayFilter(container, blocks, day);
     });
+
+    // Auto-activate "วันนี้" if today is within the camp schedule
+    var todayKey = todayDayKey();
+    if (todayKey) {
+      var todayBtn = container.querySelector('[data-day="today"]');
+      if (todayBtn) todayBtn.classList.add('active');
+      var allBtn = container.querySelector('[data-day="all"]');
+      if (allBtn) allBtn.classList.remove('active');
+      applyDayFilter(container, blocks, todayKey);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
