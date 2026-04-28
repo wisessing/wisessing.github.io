@@ -39,6 +39,8 @@
       var totalRows = 0;
 
       tables.forEach(function (table) {
+        var tripBlock = table.closest('.trip-block');
+        if (tripBlock && tripBlock.getAttribute('data-filter-hidden') === '1') return;
         var bodyRows = table.tBodies[0] ? table.tBodies[0].rows : table.rows;
         var section = table.closest('.table-section');
         var visibleInSection = 0;
@@ -71,6 +73,21 @@
         }
       });
 
+      // Hide .trip-block wrappers when all child .table-section are hidden,
+      // but never touch blocks that are hidden by the trip filter.
+      document.querySelectorAll('.trip-block').forEach(function (block) {
+        if (block.getAttribute('data-filter-hidden') === '1') return;
+        if (!terms.length) {
+          block.style.display = '';
+          return;
+        }
+        var children = block.querySelectorAll('.table-section');
+        var anyVisible = Array.prototype.some.call(children, function (s) {
+          return s.style.display !== 'none';
+        });
+        block.style.display = anyVisible ? '' : 'none';
+      });
+
       if (statsEl) {
         if (terms.length) {
           statsEl.textContent = 'พบ ' + totalShown + ' จาก ' + totalRows + ' รายการ';
@@ -82,6 +99,38 @@
 
     input.addEventListener('input', run);
     run();
+  }
+
+  function setupTripFilters() {
+    var container = document.querySelector('.trip-filters');
+    if (!container) return;
+    var blocks = document.querySelectorAll('.trip-block');
+    if (!blocks.length) return;
+
+    container.addEventListener('click', function (e) {
+      var btn = e.target.closest('.day-btn');
+      if (!btn) return;
+      var trip = btn.getAttribute('data-trip');
+      Array.prototype.forEach.call(container.querySelectorAll('.day-btn'), function (b) {
+        b.classList.toggle('active', b === btn);
+      });
+      Array.prototype.forEach.call(blocks, function (block) {
+        var show = trip === 'all' || block.getAttribute('data-trip') === trip;
+        block.style.display = show ? '' : 'none';
+        block.setAttribute('data-filter-hidden', show ? '0' : '1');
+      });
+      // Re-run search so stats reflect only the visible trip's rows.
+      var input = document.getElementById('search-input');
+      if (input) input.dispatchEvent(new Event('input'));
+      // Scroll to first visible trip block.
+      if (trip !== 'all') {
+        var first = document.querySelector('.trip-block:not([data-filter-hidden="1"])');
+        if (first) {
+          var top = first.getBoundingClientRect().top + window.pageYOffset - 140;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      }
+    });
   }
 
   function setupDayFilters() {
@@ -120,6 +169,7 @@
     var stats = document.getElementById('search-stats');
     if (input) setupTableSearch(input, stats);
 
+    setupTripFilters();
     setupDayFilters();
 
     var toggle = document.querySelector('.menu-toggle');
