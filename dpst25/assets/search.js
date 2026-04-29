@@ -201,7 +201,11 @@
     var nav = document.querySelector('nav.site-nav');
     if (toggle && nav) {
       toggle.addEventListener('click', function () {
+        var opening = !nav.classList.contains('open');
         nav.classList.toggle('open');
+        if (opening) {
+          window.scrollTo(0, 0);
+        }
       });
     }
   });
