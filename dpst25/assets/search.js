@@ -199,12 +199,13 @@
 
     var toggle = document.querySelector('.menu-toggle');
     var nav = document.querySelector('nav.site-nav');
+    var siteHeader = document.querySelector('header.site-header');
     if (toggle && nav) {
       toggle.addEventListener('click', function () {
         var opening = !nav.classList.contains('open');
         nav.classList.toggle('open');
-        if (opening) {
-          window.scrollTo(0, 0);
+        if (opening && siteHeader) {
+          nav.style.top = siteHeader.getBoundingClientRect().bottom + 'px';
         }
       });
     }

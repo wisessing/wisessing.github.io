@@ -101,6 +101,11 @@ nav.site-nav a.active {
 @media (max-width: 720px) {
   nav.site-nav {
     display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 49;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   }
   nav.site-nav.open {
     display: block;
